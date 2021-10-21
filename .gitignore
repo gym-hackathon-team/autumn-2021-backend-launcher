@@ -1,2 +1,4 @@
 .env
 docker-compose.dev.yml
+ssl/
+artifacts/
