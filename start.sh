@@ -31,8 +31,8 @@ if ! PGPASSWORD=${DATASOURCE_PASSWORD} psql -h localhost -U ${DATASOURCE_USERNAM
   PGPASSWORD=${DATASOURCE_PASSWORD} psql -h localhost -U ${DATASOURCE_USERNAME} -c 'create database "user-service";' || exit 5
 fi
 
-if ! PGPASSWORD=${DATASOURCE_PASSWORD} psql -h localhost -U ${DATASOURCE_USERNAME} -lqt | cut -d \| -f 1 | grep -qw admin-service ; then
-  PGPASSWORD=${DATASOURCE_PASSWORD} psql -h localhost -U ${DATASOURCE_USERNAME} -c 'create database "admin-service";' || exit 6
+if ! PGPASSWORD=${DATASOURCE_PASSWORD} psql -h localhost -U ${DATASOURCE_USERNAME} -lqt | cut -d \| -f 1 | grep -qw auth-service ; then
+  PGPASSWORD=${DATASOURCE_PASSWORD} psql -h localhost -U ${DATASOURCE_USERNAME} -c 'create database "auth-service";' || exit 6
 fi
 
 set +o allexport
