@@ -39,6 +39,10 @@ if ! PGPASSWORD=${DATASOURCE_PASSWORD} psql -h localhost -U ${DATASOURCE_USERNAM
   PGPASSWORD=${DATASOURCE_PASSWORD} psql -h localhost -U ${DATASOURCE_USERNAME} -c 'create database "account-service";' || exit 6
 fi
 
+if ! PGPASSWORD=${DATASOURCE_PASSWORD} psql -h localhost -U ${DATASOURCE_USERNAME} -lqt | cut -d \| -f 1 | grep -qw organization-service ; then
+  PGPASSWORD=${DATASOURCE_PASSWORD} psql -h localhost -U ${DATASOURCE_USERNAME} -c 'create database "organization-service";' || exit 6
+fi
+
 set +o allexport
 
 docker-compose -f docker-compose.dev.yml up -d || exit 7
